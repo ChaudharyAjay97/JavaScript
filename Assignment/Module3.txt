@@ -1,0 +1,80 @@
+Q1: What are components in React? Explain the difference between functional
+components and class components.
+
+ =>components are the fundamental building blocks of a user interface. They are independent, reusable pieces of code      that encapsulate their own logic and visual representation. They accept inputs called props and return React elements describing the UI
+	 
+=>two main types of components in React
+  1)Functional components: Functional components are simple JavaScript functions that take props as arguments and return JSX (JavaScript XML) markup. They are generally simpler to write and read. 
+  Initially, functional components were stateless, but with the introduction of React Hooks (like useState and useEffect), they can now manage state and handle lifecycle events, making them as powerful as class components for most use case.
+ 2) Class Components: Class components are ES6 classes that extend from React.Component. They require a render() method that returns JSX markup.
+Class components traditionally managed state using this. State and this. setState(), and handled lifecycle events using methods like componentDidMount(), componentDidUpdate(), and componentWillUnmount().
+
+Differences:
+Syntax:Functional components are simpler, written as functions, while class components use class syntax and extend React.Component.
+
+State Management: Class components use this.state and this.setState(). Functional components use Hooks like useState for state management.
+
+Lifecycle Methods:Class components have built-in lifecycle methods. Functional components achieve similar functionality using Hooks like useEffect.
+
+this binding:Class components often require careful handling of this binding, especially in event handlers. Functional components avoid this issue as they don't use this in the same way.
+
+Simplicity and Performance:Functional components are generally considered simpler, more readable, and can offer slight performance advantages due to less overhead.
+
+2): How do you pass data to a component using props?
+  =>in React, props (short for properties) are the primary mechanism for passing data from a parent component to a child component. They allow you to make your components dynamic and reusable by configuring their behavior and content from the outside.
+
+  1. In the Parent Component (where you use the child component)
+When you render a child component, you can add attributes to it, just like you would with an HTML element. These attributes become the props object in the child component.
+  
+ 2.In the Child Component (where you receive the data)
+The child component receives these props as a single JavaScript object.
+For Functional Components:
+In functional components, props are received as the first argument to the function.
+
+3):What is the role of render() in class components?
+ React class components, the render() method plays a crucial and fundamental role. It is the only required method for a class component, and its primary responsibility is to describe what should be displayed on the screen based on the component's current props and state.
+   
+Role of render(): It returns JSX that tells React what to display on the screen.
+React automatically calls render() when:
+The component first loads (mounts)
+The component’s state or props change
+
+4):What are props in React.js? How are props different from state?
+   Props (short for properties) are used in React to pass data from one component to another, typically from a parent to a child component.
+	
+   =>props: props (short for properties) are a mechanism for passing data from a parent component to a child component. They are read-only and immutable within the child component, meaning a child component cannot directly modify the props it receives from its parent. Props facilitate unidirectional data flow in React applications, ensuring that data moves predictably down the component tree.
+
+  => state: State in React, on the other hand, is a local data store managed within a component that can change over time. Unlike props, state is mutable and allows components to track and manage their own internal data. When a component's state changes, React re-renders the component and its children that depend on that state, reflecting the updated data in the UI.
+
+	Props: Like function arguments – passed from outside, read-only.
+
+	State: Like local variables – managed inside a component, can change over time.
+
+5) Explain the concept of state in React and how it is used to manage component data.
+	state is an object that holds data or information about a component that can change over time. It is a fundamental concept for building dynamic and interactive user interfaces.
+	 used to manage component data:
+  =>Local Data Storage: State acts as a component's internal memory, storing data that is relevant only to that specific component instance. This data can include anything from user input values to fetched data from an API, or even simple boolean flags for UI toggles.
+
+=>Reactivity and Re-rendering: When a component's state changes, React automatically re-renders that component to reflect the updated data in the UI. This automatic re-rendering is a core feature of React and ensures that the user interface stays synchronized with the underlying data. 
+
+=>Encapsulation: State is typically encapsulated within the component that owns it. This means that a component's state is private and cannot be directly accessed or modified by other components. This promotes modularity and prevents unintended side effects.
+
+=>State Updates: State should only be updated using a dedicated mechanism provided by React, such as the setState method in class components or the setter function returned by the useState Hook in functional components. Directly modifying the state object can lead to unexpected behavior and prevent React from correctly tracking changes and re-rendering.
+
+6)Why is this.setState() used in class components, and how doesit work?
+    setState() is a method used to update the state in a React component. When you call this method, React schedules an update to the state and triggers a re-render of the component. The key advantage of using setState() is that it is declarative.
+
+
+  1)Triggers a Re-render
+
+When you use this.setState(), React knows the state has changed and automatically re-renders the component.
+
+2) Ensures React Lifecycle is Followed
+
+React handles batched updates, diffing, and reconciliation properly through setState().
+
+3) Does Partial Updates
+
+setState() merges the new state with the existing state instead of replacing it.
+
+ Direct Assignment is Wrong.
