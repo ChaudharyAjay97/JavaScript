@@ -1,0 +1,155 @@
+1) How do you render a list of items in React? Why is it important to use keys when rendering lists?
+     when you render a list of elements using the map function or a similar approach, each rendered element must have a unique "key" prop. React key is a special string attribute that helps React identify which items have changed, been added, or been removed from the list. you render a list of items using JavaScript's map() array method. This method iterates over an array and returns a new array with each element transformed.
+
+ Keys help React identify which items have changed, been added, or removed. This improves performance and prevents bugs during re-renders.
+=>They should be unique and stable (don't use array indexes unless there's no better option).
+=>React uses keys to track elements between renders.
+=>Without keys (or with unstable ones), React may misbehave during updates (e.g., input losing focus, animations breaking).
+
+2)What are keys in React, and what happens if you do not provide a unique key?
+Keys in React are special string attributes that you must include when rendering lists of elements. They serve as a stable, unique identifier for each item within that specific list. Think of them as a way for React to keep track of individual components or elements in a collection.
+
+Keys in React are unique identifiers assigned to elements in a list when rendering components using .map() or similar iteration.
+They help React efficiently track which items in the list have changed, been added, or removed between re-renders.
+
+3)What are React hooks? How do useState() and useEffect() hooks work in functional components?
+React Hooks are functions that let you "hook into" React features like state, lifecycle methods, and context inside functional components.
+Hooks allow you to use React functionality without writing class components.
+
+use State() – Add Local State to Functional Components
+use State() lets you declare a state variable inside a functional component.
+Usage: It takes an initial state value as an argument and returns an array containing two elements: the current state value and a function to update that state.
+
+state: The current value.
+set State: Function to update the value.
+initial Value: The initial state value (e.g., 0, '', [], etc.)
+
+use Effect() – Handle Side Effects
+use Effect() lets you perform side effects in functional components, such as:
+he use Effect() hook allows functional components to perform side effects, such as data fetching, DOM manipulation, or setting up subscriptions.
+
+ Fetching data
+ Setting up subscriptions
+ Manually changing the DOM
+Running code on mount/update/unmount
+
+
+
+4) What problems did hooks solve in React development? Why are hooks considered an important addition to React?
+   Before hooks, React developers had to use class components to handle:
+
+Local state
+
+Lifecycle methods (e.g., componentDidMount, componentDidUpdate)
+
+Side effects
+
+Shared logic between components (via HOCs or Render Props)
+
+This introduced several problems:
+
+ Problems in Class-Based React
+1. Stateful Logic Was Not Reusable
+Reusing logic (e.g. fetching data) across components required:
+
+Higher-Order Components (HOCs)
+
+Render Props
+
+These patterns made code hard to understand, leading to "wrapper hell".
+
+2. Classes Were Verbose and Confusing
+Class components involved a lot of boilerplate (constructor, this.state, this.setState, binding methods).
+
+Managing this was error-prone and confusing for many developers.
+
+3. Related Logic Was Scattered
+For example, in one component:
+
+Fetching data: componentDidMount
+
+Cleanup: componentWillUnmount
+
+Updates: componentDidUpdate
+
+This scattered logic made components hard to maintain.
+
+4. Component Reusability and Testing Were Harder
+Class methods tightly coupled behavior to the component.
+
+It was harder to write reusable, testable functions.
+
+ How Hooks Solved These Problems
+Hooks brought all the power of React (state, lifecycle, context, refs, etc.) to functional components, solving the issues.
+
+
+5) What problems did hooks solve in React development? Why are hooks considered an important addition to React?
+
+ React Hooks, developers had to rely on class components to use features like state, lifecycle methods, and side effects. This approach introduced several      problems:
+
+Problems Before Hooks
+1. Code Reusability Was Difficult
+Developers had to use Higher-Order Components (HOCs) or Render Props to reuse logic across components.
+
+These patterns led to:
+
+Complex nesting
+
+Hard-to-read code
+
+Props drilling and wrapper hell
+
+2. Class Components Were Verbose and Complex
+Required more boilerplate (constructor, bind(this), this.state, etc.).
+
+Managing this keyword often caused confusion and bugs.
+
+3. Lifecycle Logic Was Scattered
+Related logic (e.g., data fetching and cleanup) was split across multiple lifecycle methods:
+
+componentDidMount, componentDidUpdate, componentWillUnmount
+
+This made code hard to follow and maintain.
+
+4. Functional Components Were Limited
+Could not manage state or side effects.
+
+Used only for presentational purposes.
+
+ Why Hooks Are an Important Addition
+Hooks modernized React by solving the above issues and enabling functional components to do everything class components could — and mor
+
+Feature	Benefit
+use State=>	Adds local state to functional components
+use Effect=>	Handles side effects in one place (fetch, timers, etc.)
+useRef, useMemo, useCallback =>	Improves performance and access to DOM
+Custom Hooks =>	Enables logic reuse without extra nesting.
+
+6)What is useReducer ? How we use in react app?
+ useReducer is a React Hook that provides an alternative to useState for managing component state, especially when dealing with complex state logic or state    transitions that depend on previous state values. It is conceptually similar to Redux in its approach to state management.
+
+useReducer is a React Hook used for managing complex state logic in functional components. It's similar to useState, but better suited when:
+State depends on previous state.
+You have multiple related state variables.
+You want to organize state updates with clear actions (like in Redux)
+
+7) What is the purpose of useCallback & useMemo Hooks?
+ useCallback and useMemo in React are performance optimization hooks that help prevent unnecessary re-renders by memoizing values and functions. useCallback memoizes a function, returning the same instance across renders unless its dependencies change, while useMemo memoizes the result of a function call, recalculating only when dependencies change. Both are crucial for optimizing component performance. 
+ 
+useCallback()=> returns a memoized version of a callback function, so it doesn't get recreated unless its dependencies change.
+useMemo()=> returns a memoized value from a calculation, only recomputing it when dependencies change.
+
+8): What’s the Difference between the useCallback & useMemo Hooks?
+   useCallback and useMemo are React hooks used for performance optimization, but they serve different purposes.
+    useMemo caches the return value of a function. useCallback caches the function definition itself. useMemo is used when you have an expensive calculation you want to avoid on every render. useCallback is used to cache a function to avoid re-creating it on every re-render.
+
+They are not the same. useMemo returns a memoized value, optimizing computation costs by recalculating only when dependencies change, while useCallback returns a memoized function, preventing unnecessary re-renders by ensuring function identity remains consistent across renders.
+
+9)What is useRef ? How to work in react app?
+  useRef is a React Hook that provides a way to create a mutable reference object that persists across component renders without causing re-renders when its value changes.
+
+useRef is a React Hook that lets you create a mutable reference to store:
+DOM elements,Or any mutable value that persists across renders without causing a re-render.
+It returns a plain JavaScript object with a current property
+Call useRef() inside your functional component and assign the returned ref object to a variable. You can optionally provide an initial value as an argument.
+
